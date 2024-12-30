@@ -1,0 +1,139 @@
+:root {
+    --main-color: #b2c9ad;
+    --main2-color: #91ac8fad;
+    --main3-color: #91ac8f;
+    --main4-color: #4b5945;
+    --post-bg: #12ff000f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+.container {
+    background: var(--main-color) !important;
+}
+
+.content {
+    background-color: var(--main2-color);
+}
+
+/* navbar */
+.container .logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navbar {
+    background-color: var(--main3-color);
+}
+
+.navbar-nav .nav-link.active {
+    text-decoration: underline;
+}
+
+.logout_btn {
+    width: 100px;
+}
+
+/* Posts */
+.card-body {
+    background-color: var(--post-bg);
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.card .user_photo {
+    width: 40px;
+}
+
+.card .post-image {
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+}
+
+.dropdown-toggle {
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: none !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.read_more_link {
+    font-size: 14px;
+}
+
+.read_more_link:hover {
+    color: var(--main4-color) !important;
+    font-weight: 500;
+}
+
+/* Users & tags table */
+td,
+th {
+    background-color: var(--main-color) !important;
+}
+
+/* Categories */
+.category_img {
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+}
+
+.category_img_wrapper {
+    overflow: hidden;
+    border-radius: 2rem;
+}
+
+.category_img_wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(55 55 55 / 50%);
+}
+
+.category_img_wrapper:hover {
+    cursor: pointer;
+}
+
+.category_img_wrapper > img {
+    transition: 0.5s;
+}
+.category_img_wrapper:hover > img {
+    transform: scale(1.1);
+}
+
+.category_img_wrapper:hover > p {
+    text-decoration: underline;
+}
+
+/* show_post */
+.card-img-top {
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
+}
+
+.show_post_user_photo {
+    width: 45px;
+}
+
+.comment_content {
+    width: fit-content;
+}
