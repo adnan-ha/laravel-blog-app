@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="container px-5 py-3">
+    <div class="container px-2 px-sm-5 py-3">
         @yield('content')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -36,6 +36,9 @@
                     <i class="fa-solid fa-right-from-bracket ms-1"></i>
                 </button>
             </form>
+            <a href="{{ route('editProfile') }}" class="bg-light rounded-5 p-2 d-inline-block ms-0 ms-lg-3 mt-2 mt-lg-0">
+                <li class="fa fa-solid fa-user-edit fa-lg text-dark"></li>
+            </a>
         </div>
     </div>
 </nav>

@@ -10,25 +10,30 @@
             </ul>
         </div>
     @endif
-    <div class="login_wrapper d-flex justify-content-center align-items-center vh-100">
-        <div class="w-75 p-5 border border-primary rounded">
-            <h1 class="text-center">Login</h1>
-            <form action="{{ route('login') }}" method="POST" class="mt-5">
-                @csrf
-                <div class="mb-3 row">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" name="email">
-                    </div>
+
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body p-4 p-sm-5">
+                    <h5 class="card-title text-center mb-5 fw-bold fs-4">Login</h5>
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                            <label for="email">Email address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Login</button>
+                        </div>
+                        <hr class="my-4">
+                        <div class="d-grid mb-2">
+                            <a href="{{ route('register') }}" class="btn text-primary">Register</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword" name="password">
-                    </div>
-                </div>
-                <input type="submit" value="Login" class="btn btn-primary w-100">
-            </form>
+            </div>
         </div>
-    </div>
 @endsection

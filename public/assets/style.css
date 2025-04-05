@@ -86,7 +86,15 @@ th {
     background-color: var(--main-color) !important;
 }
 
+.profile_img {
+    width: 90px;
+}
+
 /* Categories */
+.category-dropdown {
+    right: 12px;
+}
+
 .category_img {
     object-fit: cover;
     width: 100%;

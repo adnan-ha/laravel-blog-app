@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('manageUser', User::class);
-        $users = User::all();
+        $users = User::whereNot('id', Auth::id())->get();
         return view('dashboard.users.index', compact('users'));
     }
 
@@ -62,15 +63,18 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource (User).
      */
-    public function show(User $user)
+    public function edit_profile()
     {
-        //
+        $user = Auth::user();
+        $admin = $user->can('manageUser', User::class);
+        return view('dashboard.users.editProfile', compact('user', 'admin'));
     }
 
+
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource (Admin).
      */
     public function edit(User $user)
     {
@@ -79,20 +83,18 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage (User).
      */
-    public function update(Request $request, User $user)
+    public function update_profile(Request $request, User $user)
     {
-        $this->authorize('manageUser', User::class);
+        $user = Auth::user();
+
         $request->validate([
             'name' => 'required|string|min:4|max:20',
             'email' => 'required|string|email|unique:users,email,' . $user->id,
             'password' => 'confirmed',
-            'role' => 'required|boolean',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
-
-        $user->password = ($request->password == null) ? $user->password : $request->password;
 
         if ($request->hasFile('photo')) {
             if ($user->photo != 'defaultUser.png') {
@@ -102,15 +104,33 @@ class UserController extends Controller
             }
             $imageName = time() . '-' . $request->file('photo')->getClientOriginalName();
             $request->file('photo')->move(public_path('assets/images/users'), $imageName);
-            $user->photo = $imageName;
         }
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $user->password,
+            'password' => $request->password ?? $user->password,
+            'is_admin' => $user->is_admin ? true : false,
+            'photo' => $imageName ?? $user->photo,
+        ]);
+
+        return redirect()->route('editProfile');
+    }
+
+    /**
+     * Update the specified resource in storage (Admin).
+     */
+    public function update(Request $request, User $user)
+    {
+        $this->authorize('manageUser', User::class);
+        $request->validate([
+            'role' => 'required|boolean',
+            'password' => 'confirmed',
+        ]);
+
+        $user->update([
+            'password' => $request->password ?? $user->password,
             'is_admin' => $request->role,
-            'photo' => $user->photo,
         ]);
         return redirect()->route('users.index');
     }

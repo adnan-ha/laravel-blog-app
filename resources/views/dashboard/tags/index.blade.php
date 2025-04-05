@@ -11,32 +11,34 @@
                 Add Tag
             </a>
 
-            <table class="users_table table mt-3">
-                <thead>
-                    <tr>
-                        <th class="text-danger" scope="col">#</th>
-                        <th class="text-danger" scope="col">Tag_Name</th>
-                        <th class="text-danger" scope="col">Update</th>
-                        <th class="text-danger" scope="col">Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tags as $tag)
+            <div class="table-responsive">
+                <table class="users_table table mt-3">
+                    <thead>
                         <tr>
-                            <th scope="row">{{ $tag->id }}</th>
-                            <td>{{ $tag->name }}</td>
-                            <td><a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-success">update</a></td>
-                            <td>
-                                <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">delete</button>
-                                </form>
-                            </td>
+                            <th class="text-danger" scope="col">#</th>
+                            <th class="text-danger" scope="col">Tag_Name</th>
+                            <th class="text-danger" scope="col">Update</th>
+                            <th class="text-danger" scope="col">Delete</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($tags as $tag)
+                            <tr>
+                                <th scope="row">{{ $tag->id }}</th>
+                                <td>{{ $tag->name }}</td>
+                                <td><a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-success">update</a></td>
+                                <td>
+                                    <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @endcan
     </div>
 @endsection
