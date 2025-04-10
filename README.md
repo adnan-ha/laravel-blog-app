@@ -6,7 +6,7 @@ Before starting, ensure you have the following installed:
 
 -   PHP `^8.x`
 -   Composer
--   MySQL (or SQLite, PostgreSQL, etc.)
+-   MySQL
 
 ## Installation
 
