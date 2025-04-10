@@ -17,7 +17,7 @@ git clone https://github.com/adnan-ha/laravel-blog-app.git
 ```
 
 ```
-cd laravel-blog-app.git
+cd laravel-blog-app
 ```
 
 ### 2️⃣ Install Dependencies
